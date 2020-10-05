@@ -20,7 +20,17 @@ export default class BestGenre extends React.Component {
 
 	/* ---- Q3a (Best Genres) ---- */
 	componentDidMount() {
-	
+		fetch("http://localhost:8081/decades", {
+			method: "GET",
+		  })
+			.then((res) => res.json())
+			.then((decList) => {
+				if (!decList) return;
+			  let l = decList.map((dec) => <option value={dec.decade}>{dec.decade}</option>);    // what is the value? it can be a bug. need to go back
+			  this.setState({
+				  decades: this.state.decades.concat(l),
+			  })
+		  });
 	}
 
 	handleChange(e) {
@@ -31,7 +41,19 @@ export default class BestGenre extends React.Component {
 
 	/* ---- Q3b (Best Genres) ---- */
 	submitDecade() {
-		
+		fetch(`http://localhost:8081/decades/${this.state.selectedDecade}`, {
+			method: "GET"
+		})
+		.then(res => res.json())
+		.then((genreList) => {
+			if (!genreList) return;
+			console.log(genreList);
+			let allGs = genreList.map((g) => {
+			return <BestGenreRow genre={g.genre} rating={g.avg_rating}/>});
+			this.setState({
+				genres: allGs,
+			})
+		});
 	}
 
 	render() {

@@ -57,7 +57,7 @@ export default class Dashboard extends React.Component {
       <DashboardMovieRow title={newMovie.title} rating={newMovie.rating} vote_count={newMovie.vote_count}/>
     )
     this.setState({
-      movies: this.state.movies.concat(newMovs)
+      movies: newMovs
     })
   })
   }

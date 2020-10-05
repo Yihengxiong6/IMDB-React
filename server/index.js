@@ -37,7 +37,7 @@ app.get('/genres/:genre', routes.getTopInGenre); // Hint: Replace () => {} with 
 
 
 /* ---- Q2 (Recommendations) ---- */
-
+app.get('/rec/:name', routes.getRecs);
 
 
 
@@ -52,7 +52,7 @@ app.get('/decades', routes.getDecades);
 
 
 /* ---- Q3b (Best Genre) ---- */
-
+app.get('/decades/:year', routes.bestGenresPerDecade);
 
 
 
